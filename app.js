@@ -7,6 +7,13 @@ const usuarios = [
     { id: 2, nome: 'Sarah' }
 ];
 
+const produtos = [
+    { id: 1, nome: 'Notebook', categoria: 'eletronicos' },
+    { id: 2, nome: 'Mouse', categoria: 'eletronicos' },
+    { id: 3, nome: 'Cadeira', categoria: 'moveis' },
+    { id: 4, nome: 'Mesa', categoria: 'moveis' }
+];
+
 app.get('/usuarios', (req, res) => {
     res.json(usuarios);
 
@@ -23,10 +30,19 @@ app.post('/usuario', (req, res) => {
     res.status(201).json(novoUsuario);
 });
 
+app.get('/produtos/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const produto = produtos.find(p => p.id === id);
+
+    if (!produto) {
+        return res.status(404).json({ erro: 'Produto não encontrado' });
+    }
+
+    res.json(produto);
+});
+
 app.listen(PORT, () => {
     console.log(
         'Servidor rodando em http://localhost:${PORT}'
     );
 });
-
-
