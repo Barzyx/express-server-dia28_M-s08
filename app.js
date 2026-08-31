@@ -30,6 +30,17 @@ app.post('/usuario', (req, res) => {
     res.status(201).json(novoUsuario);
 });
 
+app.get('/produtos', (req, res) => {
+    const { categoria } = req.query;
+
+    if (!categoria) {
+        return res.json(produtos);
+    }
+
+    const produtosFiltrados = produtos.filter(p => p.categoria === categoria);
+    res.json(produtosFiltrados);
+});
+
 app.get('/produtos/:id', (req, res) => {
     const id = Number(req.params.id);
     const produto = produtos.find(p => p.id === id);
