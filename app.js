@@ -23,7 +23,7 @@ app.post('/usuario', (req, res) => {
 
     const novoUsuario = {
         id: usuarios.length + 1,
-        nome: 'João'
+        nome: 'Pedro'
     };
 
     usuarios.push(novoUsuario);
@@ -54,6 +54,6 @@ app.get('/produtos/:id', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(
-        'Servidor rodando em http://localhost:${PORT}'
+        `Servidor rodando em http://localhost:${PORT}`
     );
 });
